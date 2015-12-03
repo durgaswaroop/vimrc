@@ -7,7 +7,8 @@ if filereadable(glob("~/.vimrc.local"))
 	source ~/.vimrc.local
 endif
 
-"Abbreviations Insert and Cmd modes ********** {{{
+"Abbreviations ............. {{{
+""""""""""""""""""""""""""""""""
 iab sevearl several
 iab installtaion installation
 iab installtion installation
@@ -22,33 +23,50 @@ iab inorempa inoremap
 iab inoreamp inoremap
 iab nnorempa nnoremap
 iab vnorempa vnoremap
+
 iab syso System.out.println()<Esc>i
 cab inoreamp inoremap
 cab nnorempa nnoremap
 cab vnorempa vnoremap
 cab inorempa inoremap
+"iab 
 "}}}
 
-"{{{ All Set's and Let's 
-set pastetoggle=<F2>
+syntax on
+
+"sets the numbering on
 set nu relativenumber
-set numberwidth=1 bg=dark
+set numberwidth=3 bg=dark
+"Ignores the case of searching word when all letters are lower case
 set ignorecase
-set smartcase
-set encoding=utf-8
-set fileencoding=utf-8
-set incsearch
+set smartcase 
+"set encoding=utf-8
+set incsearch     " show search matches as you type 
 set wildmenu
+"set ft=txtfmt "for formatiing text. Txtfmt plugin
+set autochdir "changes the current directory as the root directory for NERDTree
+"Figure that out Douglas Adams
+"set scrolloff=42  "
 set scrolloff=3
+
 set shiftwidth=2
-set tabstop=2
+set tabstop=4 "a tab is 4 space
+"set softtabstop=2
 set laststatus=2
-set hlsearch
-set backspace=2
-set backspace=indent,eol,start
+set hlsearch      " highlight search terms
+nohl
+"set showbreak=...
+"let &showbreak =  
 set wrap
 set linebreak
-set t_vb= "Disables the flashing from vb
+
+"set invnumber "The current line number will be shown as 0
+
+"Sets visual bell. So, no sounds
+"set vb
+"Disables the flashing from vb
+"set t_vb=
+
 set copyindent
 set noswapfile nobackup nowritebackup
 set cursorline
