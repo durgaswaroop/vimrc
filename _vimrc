@@ -2,25 +2,28 @@ set nocompatible
 
 "source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
-behave mswin
+"behave mswin
 
 "Abbreviations ............. {{{
 """"""""""""""""""""""""""""""""
 iab tihs this
 iab psvm public static void main(String [] args)
-iab @m@ durgaswaroop@gmail.com
 iab inorempa inoremap
 iab inoreamp inoremap
 iab nnorempa nnoremap
 iab vnorempa vnoremap
 iab syso System.out.println(
+
+cab inoreamp inoremap
+cab nnorempa nnoremap
+cab vnorempa vnoremap
+cab inorempa inoremap
 "iab
 "}}}
 
 execute pathogen#infect()
-inoremap <C-space> <c-p>
-inoremap <A-tab> <tab>
 
+inoremap <C-space> <c-p>
 syntax on
 
 "sets the numbering on
@@ -173,7 +176,11 @@ colorscheme SOLARIZED
 inoremap <C-u> <Esc>viwUei
 "inoremap <BS> <Esc>xa
 nnoremap <C-u> viwU
-nnoremap <C-n> :tabe<cr>
+"nnoremap <C-n> :tabe<cr>
+"Opens a new window to ask which file to open"
+nnoremap <C-n> :browse confirm e<cr>
+nnoremap <C-S-s> :browse confirm saveas<cr>
+nnoremap <C-s> :update<cr>
 "nnoremap :w <nop>
 "nnoremap :wq <nop>
 "nnoremap :q <nop>
@@ -220,10 +227,8 @@ nnoremap <C-Up> :res +5<CR>
 nnoremap <C-Down> :res -5<CR>
 
 "Random function calls
-"nnoremap <LEADER>fs :call FirefoxSearch(:normal yiw)<CR>
-":command! -nargs=1 FS :call FirefoxSearch(<q-args>)
-"nnoremap <LEADER>cs :call TimeChanges()<CR>
 
+"nnoremap <LEADER>cs :call TimeChanges()<CR>
 "" Leader 6 to insert a line above
 nnoremap <LEADER>6 O<ESC>j
  " Leader - to insert a line below
@@ -305,14 +310,10 @@ inoremap <S-Tab> <ESC>:tabprevious<CR>
 "
 function! DeleteTrailingSpaces()
   execute "normal! mzA  "
+  "Deletes all Trailing spaces"
   %s/\s\+$//g
   execute "normal! `z"
 endfunction
-
-
-""function! FirefoxSearch(search_word)
-"		:!firefox www.google.com/search?q=a:search_word
-"endfunction
 
 ""function! TimeChanges()
 "		if strftime("%H")<18
