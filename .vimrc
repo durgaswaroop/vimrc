@@ -23,15 +23,18 @@ iab inorempa inoremap
 iab inoreamp inoremap
 iab nnorempa nnoremap
 iab vnorempa vnoremap
-
 iab syso System.out.println()<Esc>i
 cab inoreamp inoremap
 cab nnorempa nnoremap
 cab vnorempa vnoremap
 cab inorempa inoremap
+
 "iab 
 "}}}
 
+execute pathogen#infect()
+
+inoremap <C-space> <c-p>
 syntax on
 
 "sets the numbering on
@@ -117,7 +120,7 @@ augroup comments
 	autocmd FileType vim nnoremap <buffer> <localleader>c I"<Esc>
 	autocmd FileType sh nnoremap <buffer> <localleader>c I#<Esc>
 	autocmd FileType ahk nnoremap <buffer> <localleader>c I;<Esc>
-augroup END
+
 "}}}
 
 "{{{ Grid moce autocommands
@@ -316,37 +319,30 @@ nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 "}}}
 
-"{{{ Automatic brackets complete mappings
-inoremap { {}<Left>
-inoremap {{ {
-inoremap {<CR> {<CR>}<Esc>O
-inoremap <expr> }  strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-
-inoremap " ""<Left>
-inoremap "" "
-inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
-
-inoremap ' ''<Left>
-inoremap '' '
-inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
-
-inoremap ( ()<Left>
-inoremap (( (
-inoremap (<CR> (<CR>)<Esc>O
-inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-
-inoremap [ []<Left>
-inoremap [[ [
-inoremap [<CR> [<CR>]<Esc>O
-inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
-"}}}
+nnoremap <LEADER>n :NERDTreeToggle<CR>
 
 "Mapping Arrow keys to something useful "{{{
 nnoremap <up> ddkkp
 nnoremap <down> ddp
 nnoremap <left> <nop>
 nnoremap <right> :vsplit <CR> 
-"}}}
+
+"Use only zz to save"
+"nnoremap :w<cr> <nop>
+"nnoremap :wq<cr> <nop>
+
+"Opens the new split keeping the current file in its exact position. Usually it pushes it to the new split loc
+"and opens it in the current position
+set splitright splitbelow
+
+"; goes to the last non-blank character of the line
+nnoremap ; g_
+nnoremap j gj
+nnoremap k gk
+nnoremap G Gzz
+nnoremap zz :update<CR>
+nnoremap X :q<CR>
+nnoremap zx :wq<CR>
 
 "{{{ surround type particles mappings
 "Surround with Particles. Should probably put this in a different file
@@ -401,7 +397,31 @@ function! FixMySpelling()
 endfunction
 "}}}
 
-"Highlights"{{{
+"TODO:Should work more on this. Not working now"
+"nnoremap <Leader><UP> :call Resizer()<CR>
+"
+function! DeleteTrailingSpaces()
+  execute "normal! mzA  "
+  "Deletes all Trailing spaces"
+  %s/\s\+$//g
+  execute "normal! `z"
+endfunction
+
+""function! TimeChanges()
+"		if strftime("%H")<18
+"				colorscheme koehler
+"				"set background=light
+"		else
+"				colorscheme gotham
+"				"set background=dark
+"		endif
+
+"endfunction
+
+"Highlighting things
+""""""""""""""""""""""""
+"When a search matches it makes it yellow instead of huglighting it
+"hi search guibg=NONE guifg=yellow gui=bold
 hi NonText ctermfg=7 guifg=#afafaf
 hi SpecialKey ctermfg=7
 hi CursorLine cterm=NONE ctermbg=black
@@ -412,11 +432,3 @@ hi VertSplit ctermbg=NONE
 if has('gui_running')
 	so $VIM/_gvimrc
 endif
-
-" hi slred guifg=#F92672 guibg=#232526 gui=bold
-" hi slgrn guifg=#A6E22E guibg=#232526 gui=bold
-" hi slorg guifg=#FD971F guibg=#232526 gui=bold
-" hi slblu guifg=#66D9EF guibg=#232526 gui=bold
-
-" set statusline=%#slorg#CD=%{getcwd()}%=%#slred#\ PERM=%{getfperm(expand('%'))}\ FORMAT=%{&ff}\ TYPE=%Y\ SPELL=%{&spelllang}\ %#slgrn#\ LINE=%l/%L(%p%%)\ COL=%v\ BYTE=%o\ %#slblu#\ DEC=\%b\ HEX=\%B\ 
-" color statusline colors

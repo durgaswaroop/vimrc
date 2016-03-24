@@ -1,7 +1,7 @@
 "Disables audiobell and visual bell
 autocmd! GUIEnter * set vb t_vb=
 "execute "set guifont=Consolas:h14:cANSI
-set guifont=Consolas:h12.5:cANSI
+set guifont=Consolas:h13:cANSI
 colorscheme solarized
 "colorscheme lunarized_new
 "set guifont=courier_new:h14:cansi
@@ -31,8 +31,8 @@ set guioptions-=r "Rightside scroll bar always present or always absent"
 "hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=blue guifg=white
 "hi CursorLine guibg=grey
 hi CursorLine guibg=black
-hi VertSplit guibg=NONE guifg=fg
 
 if g:colors_name == "Solarized"
    hi CursorLine guibg=#111111
 endif
+

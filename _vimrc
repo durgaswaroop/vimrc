@@ -21,6 +21,15 @@ cab inorempa inoremap
 "iab
 "}}}
 
+"Plugins Installed
+""""""""""""""""""
+"1.NerdTree		- https://github.com/scrooloose/nerdtree.git
+"2.Scour		- https://github.com/durgaswaroop/vim-scour.git
+"3.Solarized	- https://github.com/altercation/vim-colors-solarized.git
+"4.Startify		- https://github.com/mhinz/vim-startify.git
+"5.Streamline	- https://github.com/durgaswaroop/vim-streamline.git
+"6.Surround		- https://github.com/tpope/vim-surround.git
+
 execute pathogen#infect()
 
 inoremap <C-space> <c-p>
@@ -32,7 +41,8 @@ set numberwidth=3 bg=dark
 "Ignores the case of searching word when all letters are lower case
 set ignorecase
 set smartcase
-"set encoding=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
 set incsearch     " show search matches as you type
 set wildmenu
 "set ft=txtfmt "for formatiing text. Txtfmt plugin
@@ -95,6 +105,11 @@ augroup AHK
 	autocmd! BufNewFile,BufReadpre *.ahk nnoremap <F7> :silent exec "!autohotkey %"<cr>
 	autocmd! BufNewFile,BufReadpre *.ahk inoremap <F7> <Esc>:silent exec "!autohotkey %"<cr>i
 augroup END
+""augroup HTML
+"	au!
+"	autocmd FileType html inoremap HTML <!DOCTYPE html><Esc>o<html><Esc>o</html><Esc>O<head><Esc>o</head><Esc>O<title>New Page</title>
+"	autocmd BufReadPre,BufWritePre *.html inoremap HTML <!DOCTYPE html><Esc>o<html><Esc>o</html><Esc>O<head><Esc>o</head><Esc>O<title>New Page</title>
+"augroup END
 augroup Comments
 	au!
 	autocmd FileType java nnoremap <buffer> <localleader>c I//<Esc>
@@ -148,6 +163,7 @@ augroup markdown
 	au!
 	"autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 	autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+	autocmd FileType md set filetype=markdown
 	autocmd FileType markdown nnoremap <leader>, ^dT0I* <Esc>o<CR>
 	autocmd FileType md nnoremap <leader>, ^dT0I* <Esc>o<CR>
 	autocmd BufNewFile,BufReadPost *.todo set filetype=markdown
@@ -170,7 +186,7 @@ set list
 set listchars=tab:\ \ ,eol:¬
 
 let fontSize=14
-colorscheme SOLARIZED
+colorscheme desert
 
 "Converts the CURRENT word to Uppercase
 inoremap <C-u> <Esc>viwUei
@@ -332,7 +348,7 @@ hi NonText ctermfg=7 guifg=#afafaf
 "For the tab character
 "hi SpecialKey ctermfg=7 guifg=#414141
 hi SpecialKey ctermfg=7 guifg=#afafaf
-
+hi CursorLine ctermbg=black cterm=bold
 if has('gui_running')
   so $VIM/_gvimrc
 endif
