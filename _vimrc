@@ -21,18 +21,10 @@ cab inorempa inoremap
 "iab
 "}}}
 
-"Plugins Installed
-""""""""""""""""""
-"1.NerdTree		- https://github.com/scrooloose/nerdtree.git
-"2.Scour		- https://github.com/durgaswaroop/vim-scour.git
-"3.Solarized	- https://github.com/altercation/vim-colors-solarized.git
-"4.Startify		- https://github.com/mhinz/vim-startify.git
-"5.Streamline	- https://github.com/durgaswaroop/vim-streamline.git
-"6.Surround		- https://github.com/tpope/vim-surround.git
-
 execute pathogen#infect()
 
 inoremap <C-space> <c-p>
+inoremap jk <Esc>
 syntax on
 
 "sets the numbering on
@@ -51,8 +43,8 @@ set autochdir "changes the current directory as the root directory for NERDTree
 "set scrolloff=42  "
 set scrolloff=3
 
-set shiftwidth=4
-set tabstop=4 "a tab is 4 space
+set shiftwidth=2
+set tabstop=2 "a tab is 4 space
 "set softtabstop=2
 set laststatus=2
 set hlsearch      " highlight search terms
@@ -75,50 +67,42 @@ set noswapfile nobackup nowritebackup
 set cursorline
 set autoread
 set smarttab
-"set shell=C:\Windows\Sy500stem32\WindowsPowerShell\v1.0\powershell.exe
 set shell=C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe
 set history=500
 
-"set shell=C:\Users\dperla\AppData\Local\Programs\Git\git-bash.exe
-
-"cd %:p:h
-"cd D:\Work_Files\
+lcd %:p:h
 
 let mapleader=" "
 let maplocalleader="\\"
 
 filetype plugin indent on
 
-"inoremap :q! <Esc>:q!
+inoremap :q! <Esc>:q!
 "Autocmd Experiemting
 """"""""""""""""""""""
 "This helps to autosave a file. But you need a name for that. So, need to add
 "a silent
 autocmd! CursorHold silent! * update
+"Disables audiobell and visual bell
+autocmd! GUIEnter * set vb t_vb=
 
 "Deletes Trailingspaces everytime before writing a file to disk
-"autocmd! BufWritePre silent! * call DeleteTrailingSpaces()
-autocmd! BufWritePre * call DeleteTrailingSpaces()
+autocmd! BufWritePre silent! * call DeleteTrailingSpaces()
+
 augroup AHK
 	autocmd! FileType ahk inoremap % %<Esc>a%<Esc>i
 	autocmd! FileType ahk set autoindent
 	autocmd! BufNewFile,BufReadpre *.ahk nnoremap <F7> :silent exec "!autohotkey %"<cr>
 	autocmd! BufNewFile,BufReadpre *.ahk inoremap <F7> <Esc>:silent exec "!autohotkey %"<cr>i
 augroup END
-""augroup HTML
-"	au!
-"	autocmd FileType html inoremap HTML <!DOCTYPE html><Esc>o<html><Esc>o</html><Esc>O<head><Esc>o</head><Esc>O<title>New Page</title>
-"	autocmd BufReadPre,BufWritePre *.html inoremap HTML <!DOCTYPE html><Esc>o<html><Esc>o</html><Esc>O<head><Esc>o</head><Esc>O<title>New Page</title>
-"augroup END
+
 augroup Comments
 	au!
 	autocmd FileType java nnoremap <buffer> <localleader>c I//<Esc>
-	autocmd FileType java vnoremap <buffer> <localleader>c :normal I//<cr>
 	autocmd FileType c nnoremap <buffer> <localleader>c I//<Esc>
 	autocmd FileType vim nnoremap <buffer> <localleader>c I"<Esc>
 	autocmd FileType sh nnoremap <buffer> <localleader>c I#<Esc>
 	autocmd FileType ahk nnoremap <buffer> <localleader>c I;<Esc>
-	autocmd BufWritePre *.ahk nnoremap <buffer> <localleader>c I;<Esc>
 augroup END
 
 augroup GridMoveStuff
@@ -138,9 +122,8 @@ augroup Java_stuff
 	autocmd BufNewFile,BufReadPre,BufWritePre *.java nnoremap <buffer> <localleader>c I//<ESC>
 	"autocmd BufNewFile,BufReadPre,BufWritePre *.java :normal! set showbreak=
 	"autocmd FileType java :set showbreak=
-	autocmd BufNewFile,BufReadPre *.java set autoindent
-	autocmd BufNewFile,BufReadPre *.java set nospell
-	autocmd BufReadPre,BufWritePre *.java :normal! mzgg=G`z
+	autocmd BufNewFile,BufReadPre *.java set autoindent nospell
+	"autocmd BufReadPre,BufWritePre *.java :normal! mzgg=G`z
 augroup END
 
 augroup HTML
@@ -148,7 +131,6 @@ augroup HTML
 	autocmd FileType html set autoindent
 augroup END
 
-"File format i use "
 augroup notes
 	au!
 	autocmd FileType notes nnoremap <leader>/ ^i-> <esc>a<cr>
@@ -182,24 +164,24 @@ augroup END
 set list
 "set listchars=tab:>.,eol:¬
 "set listchars=tab:»·,eol:¬
-"set listchars=tab:\|\ ,eol:¬
-set listchars=tab:\ \ ,eol:¬
+" set listchars=tab:\ \ ,eol:¬
+set listchars=tab:\|\ ,eol:¬
 
 let fontSize=14
+"execute "set guifont=Consolas:h14:cANSI
+"set guifont=Consolas:h13:cANSI
+"set guifont=courier_new:h14:cansi
+"set guifont=Monaco:h12:cANSI
+"set guifont=Menlo:h12:cANSI
 colorscheme desert
 
 "Converts the CURRENT word to Uppercase
 inoremap <C-u> <Esc>viwUei
-"inoremap <BS> <Esc>xa
 nnoremap <C-u> viwU
-"nnoremap <C-n> :tabe<cr>
 "Opens a new window to ask which file to open"
 nnoremap <C-n> :browse confirm e<cr>
 nnoremap <C-S-s> :browse confirm saveas<cr>
 nnoremap <C-s> :update<cr>
-"nnoremap :w <nop>
-"nnoremap :wq <nop>
-"nnoremap :q <nop>
 
 "To move tabs around
 """""""""""""""""""""""
@@ -211,12 +193,30 @@ set complete=.,w,b,u,t,i,kspell
 
 
 "Auto Brackets and other ending Auto completion
-""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap { {<Esc>a}<Esc>i
-inoremap " "<Esc>a"<Esc>i
-inoremap ' '<Esc>a'<Esc>i
-inoremap ( (<Esc>a)<Esc>i
-inoremap [ [<Esc>a]<Esc>i
+"The expr commands help to skip over the closing character
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap { {}<Left>
+inoremap {{ {
+inoremap {<CR> {<CR>}<Esc>O
+inoremap <expr> }  strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+
+inoremap " ""<Left>
+inoremap "" "
+inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
+
+inoremap ' ''<Left>
+inoremap '' '
+inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
+
+inoremap ( ()<Left>
+inoremap (( (
+inoremap (<CR> (<CR>)<Esc>O
+inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+
+inoremap [ []<Left>
+inoremap [[ [
+inoremap [<CR> [<CR>]<Esc>O
+inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 
 "All Leader Commands
 """""""""""""""""""""
@@ -243,14 +243,14 @@ nnoremap <C-Up> :res +5<CR>
 nnoremap <C-Down> :res -5<CR>
 
 "Random function calls
-
+"nnoremap <LEADER>fs :call FirefoxSearch(:normal yiw)<CR>
+":command! -nargs=1 FS :call FirefoxSearch(<q-args>)
 "nnoremap <LEADER>cs :call TimeChanges()<CR>
 "" Leader 6 to insert a line above
 nnoremap <LEADER>6 O<ESC>j
  " Leader - to insert a line below
 nnoremap <LEADER>- o<ESC>k
 
-"Opens Nerd Tree with <Leader>n
 nnoremap <LEADER>n :NERDTreeToggle<CR>
 
 "mapping Arrow keys to something useful
@@ -320,7 +320,6 @@ nnoremap <C-S-Tab> :tabprevious<CR>
 inoremap <C-Tab> <ESC>:tabnext<CR>
 inoremap <S-Tab> <ESC>:tabprevious<CR>
 
-
 "TODO:Should work more on this. Not working now"
 "nnoremap <Leader><UP> :call Resizer()<CR>
 "
@@ -341,14 +340,18 @@ endfunction
 "		endif
 
 "endfunction
+
 "Highlighting things
 """"""""""""""""""""""""
 "When a search matches it makes it yellow instead of huglighting it
+"hi search guibg=NONE guifg=yellow gui=bold
 hi NonText ctermfg=7 guifg=#afafaf
 "For the tab character
 "hi SpecialKey ctermfg=7 guifg=#414141
 hi SpecialKey ctermfg=7 guifg=#afafaf
+"hi cursorlinenr guifg=blue guibg=white
 hi CursorLine ctermbg=black cterm=bold
+"hi CursorLine guibg=grey
 if has('gui_running')
   so $VIM/_gvimrc
 endif

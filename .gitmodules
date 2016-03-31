@@ -1,0 +1,24 @@
+[submodule "vimfiles/bundle/nerdtree"]
+	path = vimfiles/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vimfiles/bundle/vim-colors-solarized"]
+	path = vimfiles/bundle/vim-colors-solarized
+	url = https://github.com/durgaswaroop/vim-colors-solarized.git
+[submodule "vimfiles/bundle/vim-lunarized"]
+	path = vimfiles/bundle/vim-lunarized
+	url = https://github.com/durgaswaroop/vim-lunarized.git
+[submodule "vimfiles/bundle/tagbar"]
+	path = vimfiles/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "vimfiles/bundle/vim-scour"]
+	path = vimfiles/bundle/vim-scour
+	url = https://github.com/durgaswaroop/vim-scour.git
+[submodule "vimfiles/bundle/vim-startify"]
+	path = vimfiles/bundle/vim-startify
+	url = https://github.com/mhinz/vim-startify.git
+[submodule "vimfiles/bundle/vim-streamline"]
+	path = vimfiles/bundle/vim-streamline
+	url = https://github.com/durgaswaroop/vim-streamline.git
+[submodule "vimfiles/bundle/xterm-color-table.vim"]
+	path = vimfiles/bundle/xterm-color-table.vim
+	url = https://github.com/guns/xterm-color-table.vim.git
