@@ -1,0 +1,38 @@
+"Disables audiobell and visual bell
+autocmd! GUIEnter * set vb t_vb=
+"execute "set guifont=Consolas:h14:cANSI
+set guifont=Consolas:h12.5:cANSI
+colorscheme solarized
+"colorscheme lunarized_new
+"set guifont=courier_new:h14:cansi
+"set guifont=Monaco:h12:cANSI
+"set guifont=Menlo:h12:cANSI
+
+"Turns off Menubar and Toolbar in gVim
+"""""""""""""""""""""""""""""""""""""
+set guioptions-=m "Menu bar - m"
+set guioptions-=T "Includes/Remove Tool bar"
+set guioptions+=a "Autoselect. Visually selected text will be copied directly to system clipboard"
+"set guioptions-=l  "Left scrollbar is always present or always absent"
+set guioptions-=L
+set guioptions-=r "Rightside scroll bar always present or always absent"
+"set guioptions-=L
+"set guioptions-=R
+"set guioptions+=
+
+""function! Resizer()
+"		if fontSize == 15
+"		set guifont=Consolas:h12:cANSI
+"		execute "set guifont=Consolas:h14:cANSI
+"endfunction
+"hi search guibg=NONE guifg=yellow gui=bold
+"hi cursorlinenr guifg=blue guibg=white
+
+"hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=blue guifg=white
+"hi CursorLine guibg=grey
+hi CursorLine guibg=black
+hi VertSplit guibg=NONE guifg=fg
+
+if g:colors_name == "Solarized"
+   hi CursorLine guibg=#111111
+endif
