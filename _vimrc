@@ -1,8 +1,5 @@
 set nocompatible
-
-"source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
-"behave mswin
+execute pathogen#infect()
 
 "Abbreviations ............. {{{
 """"""""""""""""""""""""""""""""
@@ -21,7 +18,6 @@ cab inorempa inoremap
 "iab
 "}}}
 
-execute pathogen#infect()
 
 inoremap <C-space> <c-p>
 inoremap jk <Esc>
